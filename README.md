@@ -91,26 +91,18 @@ Using the original odds from the task description (Pair x1, 4+2 x2, etc.):
   - **Conclusion:** The math was broken; the casino would lose money in the long run because the "Pair" combination appears too frequently (\~97% of the time) with a x1 return.
 
 
-### Task \#2: Adjusted Odds (Target \~95%)
-
+### Task #2: Adjusted Odds (Target ~95%)
 
 To achieve a stable **95% RTP**, the coefficients were optimized. The most critical change was lowering the "Pair" multiplier below 1.
 
-
-| Combination | Original Odds | **New Odds (95% RTP)** |
-
+| Combination | Original Odds | New Odds (95% RTP) |
 |:---|:---:|:---:|
-
 | **Pair** | x1 | **x0.82** |
-
 | **4+2** | x2 | **x3.0** |
-
 | **Yahtzee** | x3 | **x20.0** |
-
 | **Three Pairs**| x4 | **x4.0** |
 
-
-**Final Verified RTP:** \~95.3%
+**Final Verified RTP:** ~95.3%
 
 
 -----
