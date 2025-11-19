@@ -88,7 +88,7 @@ Using the original odds from the task description (Pair x1, 4+2 x2, etc.):
 
   - **Calculated RTP:** \~111%
 
-  - **Conclusion:** The math was broken; the casino would lose money in the long run because the "Pair" combination appears too frequently (\~97% of the time) with a x1 return.
+  - **Conclusion:** The math was broken; the game would lose balance in the long run because the "Pair" combination appears too frequently (\~97% of the time) with a x1 return.
 
 
 ### Task #2: Adjusted Odds (Target ~95%)
