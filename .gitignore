@@ -1,4 +1,4 @@
-# --- Python ---
+# Python 
 __pycache__/
 *.py[cod]
 *$py.class
@@ -7,12 +7,12 @@ venv/
 env/
 .env
 
-# --- Database (Важно!) ---
+# Database 
 *.sqlite3
 *.db
 *.db-journal
 
-# --- Node.js / Vue ---
+# Node.js / Vue
 node_modules/
 dist/
 npm-debug.log*
@@ -20,6 +20,6 @@ yarn-debug.log*
 yarn-error.log*
 .DS_Store
 
-# --- IDE (настройки редактора) ---
+# IDE  
 .idea/
 .vscode/

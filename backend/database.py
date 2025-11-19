@@ -5,10 +5,10 @@ from typing import Optional
 DB_NAME = "game.db"
 
 def init_db():
-    """Создає таблицю транзакцій, якщо не існує."""
+    """Creates transactions table if it does not exist."""
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
-        # Таблиця транзакцій: id, value, type, timestamp
+        # Transactions table: id, value, type, timestamp
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS transactions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,8 +20,7 @@ def init_db():
         conn.commit()
 
 def add_transaction(value: float, trans_type: str):
-    """Добавляє запис о транзакції (ставка, виграш або ініт)."""
-    
+    """Adds a transaction record (bet, win, or init)."""
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -31,8 +30,7 @@ def add_transaction(value: float, trans_type: str):
         conn.commit()
 
 def get_balance() -> float:
-    """повертає суму всіх транзакцій."""
-    
+    """Returns the sum of all transactions."""
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT SUM(value) FROM transactions")
@@ -40,10 +38,11 @@ def get_balance() -> float:
         return result if result is not None else 0.0
 
 def has_transactions() -> bool:
-    """Перевіряє чи є транзакция"""
+    """Checks if any transactions exist."""
     with sqlite3.connect(DB_NAME) as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT count(*) FROM transactions")
         return cursor.fetchone()[0] > 0
 
+# Initialize DB on module import
 init_db()

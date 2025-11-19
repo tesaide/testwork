@@ -10,14 +10,13 @@ sys.path.append(backend_path)
 try:
     from game_logic import roll_dice
 except ImportError:
-    print("Не знайдено файл game_logic.py")
-    print(f"Переконайтеся, що у папці testwork/backend є файл game_logic.py")
+    print("game_logic.py not found")
+    print(f"Ensure that testwork/backend contains game_logic.py")
     sys.exit(1)
 
-# --- Налаштування симуляції ---
-SIMULATIONS_COUNT = 1_000_000  # кількість ігор
+# --- Simulation Settings ---
+SIMULATIONS_COUNT = 1_000_000  # number of games
 BET_AMOUNT = 10 
-
 
 ORIGINAL_ODDS = {
     "Three Pairs": 4,
@@ -27,21 +26,21 @@ ORIGINAL_ODDS = {
 }
 
 NEW_ODDS = {
-    "Three Pairs": 4.0,  # Стандартний x4 (це рідкість, не страшно)
+    "Three Pairs": 4.0,  # Standard x4 (rare, so okay)
     "Yahtzee": 20.0,     
-    "4+2": 3.0,          # Трохи вище стандарту
-    "Pair": 0.82         # Знижуємо найчастішу виплату
+    "4+2": 3.0,          # Slightly higher than standard
+    "Pair": 0.82         # Lowering the most frequent payout to balance RTP
 }
 
 
 def check_combination_with_odds(dice, odds_table):
     """
-    Логіка перевірки виграшу з таблицею коефіцієнтів, що настроюється.
+    Logic to check win using a customizable odds table.
     """
     counts = Counter(dice)
     values = list(counts.values())
     
-    # Перевіряємо від найціннішої до простої
+    # Check from highest to lowest value
     if values.count(2) == 3:
         return odds_table["Three Pairs"]
     if 6 in values:
@@ -51,18 +50,18 @@ def check_combination_with_odds(dice, odds_table):
     if any(count >= 2 for count in values):
         return odds_table["Pair"]
     
-    return 0 # Немає виграшу
+    return 0 # No win
 
 def run_simulation(iterations, odds_table, title):
     print(f"\n--- {title} ---")
-    print(f"Запуск симуляції на {iterations} ігор...")
+    print(f"Running simulation for {iterations} games...")
     
     total_bet = 0
     total_win = 0
     
     for _ in range(iterations):
         total_bet += BET_AMOUNT
-        dice = roll_dice() # Генеруємо випадковий кидок
+        dice = roll_dice() # Generate random roll
         multiplier = check_combination_with_odds(dice, odds_table)
         
         win = BET_AMOUNT * multiplier
@@ -70,18 +69,18 @@ def run_simulation(iterations, odds_table, title):
 
     rtp = (total_win / total_bet) * 100
     
-    print(f"Всього ставок: {total_bet}")
-    print(f"Всього перемог: {total_win}")
-    print(f"Фінальний RTP: {rtp:.2f}%")
+    print(f"Total Bets: {total_bet}")
+    print(f"Total Wins: {total_win}")
+    print(f"Final RTP: {rtp:.2f}%")
     
     if 94 < rtp < 96:
-        print("Показник в нормі (~95%)")
+        print("RTP is ideal (~95%)")
     elif rtp < 50:
-        print("Алгоритм занадто суворий (Task #1)")
+        print("Algorithm is too strict (Task #1)")
     
 if __name__ == "__main__":
-    # Завдання 1: Перевірити поточні налаштування
-    run_simulation(SIMULATIONS_COUNT, ORIGINAL_ODDS, "Завдання 1: Базові налаштування")
+    # Task 1: Check original settings
+    run_simulation(SIMULATIONS_COUNT, ORIGINAL_ODDS, "Task 1: Original Settings")
     
-    # Завдання 2: Підібрати RTP ~95%
-    run_simulation(SIMULATIONS_COUNT, NEW_ODDS, "Завдання 2: Оптимізовані налаштування")
+    # Task 2: Find RTP ~95%
+    run_simulation(SIMULATIONS_COUNT, NEW_ODDS, "Task 2: Optimized Settings")

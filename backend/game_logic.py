@@ -2,23 +2,23 @@ import random
 from collections import Counter
 from typing import List, Tuple
 
-# Оновлений коефіцієнт (RTP ~95.31%)
+# Updated odds (RTP ~95.31%)
 ODDS = {
     "Three Pairs": 4.0,
-    "Yahtzee": 20.0,    # Джекпот
+    "Yahtzee": 20.0,    # Jackpot
     "4+2": 3.0,
     "Pair": 0.82        
 }
 
 def roll_dice() -> List[int]:
-    """Генерація 6 випадкових чисел  1 - 6."""
+    """Generates 6 random numbers from 1 to 6."""
     
     return [random.randint(1, 6) for _ in range(6)]
 
 def check_combination(dice: List[int]) -> Tuple[str, int]:
     """
-    Визначає виграшний прибуток та повертає (Назва, Множитель).
-    Повертає('Інше', 0), якщо комбінацій немає.
+    Determines the winning combination and returns (Name, Multiplier).
+    Returns ('Other', 0) if no combination is found.
     """
     counts = Counter(dice)
     values = list(counts.values())
