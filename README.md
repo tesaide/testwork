@@ -3,8 +3,6 @@
 # Yahtzee Game 
 
 
-A simple single-page gambling application developed as a test assignment.
-
 Stack: **Vue 3 (Vite)** + **Python (FastAPI, SQLite)**.
 
 
