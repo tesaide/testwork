@@ -1,6 +1,6 @@
 
 
-# Yahtzee Game 
+# Yahtzee Game  
 
 
 Stack: **Vue 3 (Vite)** + **Python (FastAPI, SQLite)**.
